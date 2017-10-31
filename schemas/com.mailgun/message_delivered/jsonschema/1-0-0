@@ -1,0 +1,59 @@
+{
+  "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
+  "description": "Schema for a Mailgun message delivered event",
+  "self": {
+    "vendor": "com.mailgun",
+    "name": "message_delivered",
+    "format": "jsonschema",
+    "version": "1-0-0"
+  },
+  "type": "object",
+  "properties": {
+    "body-plain": {
+      "description": "text/plain body of the message.",
+      "type": "string",
+      "maxLength": 524288
+    },
+    "event": {
+      "description": "Event name ('delivered').",
+      "type": "string",
+      "maxLength": 16
+    },
+    "recipient": {
+      "description": "Intended recipient.",
+      "type": "string",
+      "maxLength": 512
+    },
+    "domain": {
+      "description": "Domain that sent the original message.",
+      "type": "string",
+      "maxLength": 256
+    },
+    "message-headers": {
+      "description": "String list of all MIME headers of the original message dumped to a JSON string (order of headers preserved).",
+      "type": "string"
+    },
+    "Message-Id": {
+      "description": "The Id of the message that delivered.",
+      "type": "string",
+      "maxLength": 1024
+    },
+    "timestamp": {
+      "description": "Number of seconds passed since January 1, 1970 (see securing webhooks).",
+      "type": "integer",
+      "maximum": 2147483647
+    },
+    "token": {
+      "description": "Randomly generated string with length 50 (see securing webhooks).",
+      "type": "string",
+      "maxLength": 64
+    },
+    "signature": {
+      "description": "String with hexadecimal digits generate by HMAC algorithm (see securing webhooks).",
+      "type": "string",
+      "pattern": "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$",
+      "maxLength": 128
+    }
+  },
+  "additionalProperties": true
+}
